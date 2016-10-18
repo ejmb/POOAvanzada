@@ -1,0 +1,3 @@
+1;Eduardo Morel;2695031-0;Buenos Aires 271;150000.0;
+2;Fabiana Aguilera;443453-2;Av. Miraflores 232;235000.0;
+
