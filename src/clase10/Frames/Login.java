@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package clase10;
+package clase10.Frames;
 
+import clase10.Clases.Usuario;
 import clase8.Cliente;
 import java.io.BufferedReader;
 import java.io.File;
@@ -161,7 +162,10 @@ public class Login extends javax.swing.JFrame {
                 //Verificar si existe Usuario/Contraseña
                 if(verifyCredentials(usr, encodedPass)){
                     countLogin = 0;
-                    //Go PRINCIPAL                        
+                    //Go PRINCIPAL
+                    Principal p = new Principal();
+                    p.setVisible(true);
+                    this.dispose();                                            
                 }else{ 
 //                    JOptionPane.showMessageDialog(this, "Usuario y/o Contraseña incorrectos!\n"+
 //                        "Intentos Nº"+ countLogin,
