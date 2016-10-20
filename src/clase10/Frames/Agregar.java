@@ -57,7 +57,7 @@ public class Agregar extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Agregar Producto");
+        setTitle("Agregar Productos");
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -171,12 +171,10 @@ public class Agregar extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(fTxtUtilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fTxtUtilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(fTxtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(63, 63, 63)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(spDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -239,15 +237,17 @@ public class Agregar extends javax.swing.JFrame {
 
     private void bCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCerrarActionPerformed
         // TODO add your handling code here:
-        if(addListToFile()){
-                JOptionPane.showMessageDialog(this, "Lista Guardada", "Datos Guardados",
+        if(fTxtCodigo.getText().equals("")){
+            this.dispose();
+        }else if(addListToFile()){
+            JOptionPane.showMessageDialog(this, "Lista Guardada", "Datos Guardados",
                         JOptionPane.INFORMATION_MESSAGE);
-                cleanFields();
-            }else{
-                JOptionPane.showMessageDialog(this, "Error al Guardar", 
-                        "Datos No Guardados", JOptionPane.ERROR_MESSAGE);
-            }  
-        this.dispose();
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(this, "Error al Guardar", 
+                    "Datos No Guardados", JOptionPane.ERROR_MESSAGE);
+            this.dispose();
+        }          
     }//GEN-LAST:event_bCerrarActionPerformed
 
     private void bGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGuardarActionPerformed

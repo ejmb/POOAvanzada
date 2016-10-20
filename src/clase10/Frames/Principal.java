@@ -33,10 +33,14 @@ public class Principal extends javax.swing.JFrame {
         menuConsultar = new javax.swing.JMenuItem();
         menuListar = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        menuAcercaDe = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Principal");
+        setResizable(false);
 
         jMenu1.setText("Productos");
+        jMenu1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
         menuAgregar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
         menuAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/clase10/images/addIcon.png"))); // NOI18N
@@ -64,11 +68,28 @@ public class Principal extends javax.swing.JFrame {
         menuListar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/clase10/images/listIcon.png"))); // NOI18N
         menuListar.setMnemonic('l');
         menuListar.setText("Listar");
+        menuListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuListarActionPerformed(evt);
+            }
+        });
         jMenu1.add(menuListar);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Acerca de");
+        jMenu2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        menuAcercaDe.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F12, 0));
+        menuAcercaDe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/clase10/images/aboutIcon.png"))); // NOI18N
+        menuAcercaDe.setText("Acerca de");
+        menuAcercaDe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuAcercaDeActionPerformed(evt);
+            }
+        });
+        jMenu2.add(menuAcercaDe);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -97,6 +118,16 @@ public class Principal extends javax.swing.JFrame {
         Consultar c = new Consultar();
         c.setVisible(true);
     }//GEN-LAST:event_menuConsultarActionPerformed
+
+    private void menuListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuListarActionPerformed
+        Listar l = new Listar();
+        l.setVisible(true);
+    }//GEN-LAST:event_menuListarActionPerformed
+
+    private void menuAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAcercaDeActionPerformed
+        AcercaDe ad = new AcercaDe();
+        ad.setVisible(true);
+    }//GEN-LAST:event_menuAcercaDeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -137,6 +168,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem menuAcercaDe;
     private javax.swing.JMenuItem menuAgregar;
     private javax.swing.JMenuItem menuConsultar;
     private javax.swing.JMenuItem menuListar;
