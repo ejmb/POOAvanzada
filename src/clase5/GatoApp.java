@@ -5,7 +5,6 @@
  */
 package clase5;
 
-import clase3.Mascota;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 

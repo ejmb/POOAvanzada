@@ -53,6 +53,11 @@ public class Principal extends javax.swing.JFrame {
         menuConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/clase10/images/searchIcon.png"))); // NOI18N
         menuConsultar.setMnemonic('c');
         menuConsultar.setText("Consultar");
+        menuConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuConsultarActionPerformed(evt);
+            }
+        });
         jMenu1.add(menuConsultar);
 
         menuListar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
@@ -87,6 +92,11 @@ public class Principal extends javax.swing.JFrame {
         Agregar a = new Agregar();
         a.setVisible(true);
     }//GEN-LAST:event_menuAgregarActionPerformed
+
+    private void menuConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultarActionPerformed
+        Consultar c = new Consultar();
+        c.setVisible(true);
+    }//GEN-LAST:event_menuConsultarActionPerformed
 
     /**
      * @param args the command line arguments

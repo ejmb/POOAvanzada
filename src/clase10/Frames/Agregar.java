@@ -5,6 +5,16 @@
  */
 package clase10.Frames;
 
+import clase10.Clases.Producto;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.LinkedList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Eduardo
@@ -16,6 +26,7 @@ public class Agregar extends javax.swing.JFrame {
      */
     public Agregar() {
         initComponents();
+        loadProductTypes();
     }
 
     /**
@@ -40,36 +51,85 @@ public class Agregar extends javax.swing.JFrame {
         fTxtUtilidad = new javax.swing.JFormattedTextField();
         jLabel7 = new javax.swing.JLabel();
         spDescuento = new javax.swing.JSpinner();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        bLimpiar = new javax.swing.JButton();
+        bGuardar = new javax.swing.JButton();
+        bCerrar = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Agregar Producto");
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(179, 83, 9));
         jLabel1.setText("Agregar Producto");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("Codigo");
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("Descripcion");
 
+        fTxtCodigo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
+        fTxtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fTxtCodigoKeyTyped(evt);
+            }
+        });
+
+        txtDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDescripcionKeyTyped(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setText("Tipo");
 
-        cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setText("Precio Compra");
 
+        fTxtPrecio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
+        fTxtPrecio.setToolTipText("");
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setText("Utilidad");
 
+        fTxtUtilidad.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.0"))));
+        fTxtUtilidad.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setText("Descuento MAX");
 
-        jButton1.setText("Limpiar");
+        spDescuento.setModel(new javax.swing.SpinnerNumberModel(0, 0, 20, 1));
 
-        jButton2.setText("Guardar");
+        bLimpiar.setBackground(new java.awt.Color(153, 153, 153));
+        bLimpiar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        bLimpiar.setText("Limpiar");
+        bLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bLimpiarActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Cerrar");
+        bGuardar.setBackground(new java.awt.Color(179, 83, 9));
+        bGuardar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        bGuardar.setForeground(new java.awt.Color(255, 255, 255));
+        bGuardar.setText("Guardar");
+        bGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bGuardarActionPerformed(evt);
+            }
+        });
+
+        bCerrar.setBackground(new java.awt.Color(102, 102, 102));
+        bCerrar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        bCerrar.setText("Cerrar");
+        bCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCerrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -78,44 +138,49 @@ public class Agregar extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(128, 128, 128)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel1)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel3)
+                                                .addComponent(jLabel2))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(fTxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(18, 18, 18)
+                                                    .addComponent(jLabel4)))))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jSeparator1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(87, 87, 87)
+                                .addComponent(bLimpiar)
+                                .addGap(18, 18, 18)
+                                .addComponent(bGuardar)
+                                .addGap(18, 18, 18)
+                                .addComponent(bCerrar))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(fTxtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(spDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(fTxtUtilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(31, 31, 31)
-                                .addComponent(fTxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton3)
-                                .addGap(33, 33, 33)))))
-                .addContainerGap(50, Short.MAX_VALUE))
+                                .addComponent(fTxtUtilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(fTxtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(63, 63, 63)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(spDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,7 +197,9 @@ public class Agregar extends javax.swing.JFrame {
                     .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(fTxtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -142,16 +209,70 @@ public class Agregar extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(fTxtUtilidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addGap(33, 33, 33))
+                    .addComponent(bLimpiar)
+                    .addComponent(bGuardar)
+                    .addComponent(bCerrar))
+                .addGap(30, 30, 30))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLimpiarActionPerformed
+        cleanFields();
+    }//GEN-LAST:event_bLimpiarActionPerformed
+
+    private void fTxtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fTxtCodigoKeyTyped
+        if (!Character.isDigit(evt.getKeyChar())){
+            evt.consume();
+	}
+    }//GEN-LAST:event_fTxtCodigoKeyTyped
+
+    private void txtDescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyTyped
+        if (Character.isDigit(evt.getKeyChar())){
+            evt.consume();
+	}
+    }//GEN-LAST:event_txtDescripcionKeyTyped
+
+    private void bCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCerrarActionPerformed
+        // TODO add your handling code here:
+        if(addListToFile()){
+                JOptionPane.showMessageDialog(this, "Lista Guardada", "Datos Guardados",
+                        JOptionPane.INFORMATION_MESSAGE);
+                cleanFields();
+            }else{
+                JOptionPane.showMessageDialog(this, "Error al Guardar", 
+                        "Datos No Guardados", JOptionPane.ERROR_MESSAGE);
+            }  
+        this.dispose();
+    }//GEN-LAST:event_bCerrarActionPerformed
+
+    private void bGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGuardarActionPerformed
+        // TODO add your handling code here:
+        if(validateFields()){
+            Producto p = new Producto();
+            p.setCodigo(((Long)fTxtCodigo.getValue()).intValue());
+            p.setDescripcion(txtDescripcion.getText());
+            p.setTipo(cbTipo.getSelectedItem().toString());
+            p.setPrecioCompra(((Long)fTxtPrecio.getValue()).intValue());
+            p.setDescMaximo((Integer)spDescuento.getValue());
+            p.setUtilidad(((Double)fTxtUtilidad.getValue()).floatValue());
+            if(addProductList(p)){
+                JOptionPane.showMessageDialog(this, p.toString(), "Datos Guardados",
+                        JOptionPane.INFORMATION_MESSAGE);
+                cleanFields();
+            }else{
+                JOptionPane.showMessageDialog(this, "Error al Guardar", 
+                        "Datos No Guardados", JOptionPane.ERROR_MESSAGE);
+            }                        
+        }else{
+            JOptionPane.showMessageDialog(this, "FALSE",
+                    "Error:", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_bGuardarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,13 +310,13 @@ public class Agregar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bCerrar;
+    private javax.swing.JButton bGuardar;
+    private javax.swing.JButton bLimpiar;
     private javax.swing.JComboBox<String> cbTipo;
     private javax.swing.JFormattedTextField fTxtCodigo;
     private javax.swing.JFormattedTextField fTxtPrecio;
     private javax.swing.JFormattedTextField fTxtUtilidad;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -203,7 +324,115 @@ public class Agregar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSpinner spDescuento;
     private javax.swing.JTextField txtDescripcion;
     // End of variables declaration//GEN-END:variables
+    private final LinkedList<Producto> productList = new LinkedList<>();  
+    
+    //Carga TiposProductos.txt al ComboBox
+    private void loadProductTypes() {        
+        String aux = "";
+        try{
+            String archivo = "src/clase10/files/TiposProductos.txt";
+            FileReader archivos = new FileReader(archivo);
+            BufferedReader read = new BufferedReader(archivos);
+            while((aux = read.readLine()) != null){
+                cbTipo.addItem(aux);
+            }                
+            read.close();
+        }catch(IOException ex){
+            JOptionPane.showMessageDialog(null, ex+""+
+                    "\nNo se pudo leer el archivo",
+                    "ADVERTENCIA!", JOptionPane.WARNING_MESSAGE);
+        }
+    }  
+    
+    //Limpia los Campos y hace Foco en el primer Campo    
+    private void cleanFields(){
+        fTxtCodigo.setText("");
+        txtDescripcion.setText("");
+        cbTipo.setSelectedIndex(0);
+        fTxtPrecio.setText("");
+        spDescuento.setValue(0);
+        fTxtUtilidad.setText("");
+        fTxtCodigo.requestFocus();
+    }
+   
+    //Valida los Campos
+    private boolean validateFields() {
+        //Validar Codigo vacio
+        if(fTxtCodigo.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Campo Codigo no puede estar VACIO",
+                    "Error:", JOptionPane.ERROR_MESSAGE);
+            fTxtCodigo.requestFocus();
+            return false;           
+        }
+        //Validar Descripcion vacia
+        if(txtDescripcion.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Campo Descripcion no puede estar VACIO",
+                    "Error:", JOptionPane.ERROR_MESSAGE);
+            txtDescripcion.requestFocus();
+            return false;           
+        }
+        //Validar Precio vacio
+        if(fTxtPrecio.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Campo Precio no puede estar VACIO",
+                    "Error:", JOptionPane.ERROR_MESSAGE);
+            txtDescripcion.requestFocus();
+            return false;           
+        }
+        //Validar Utilidad vacia
+        if(fTxtUtilidad.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Campo Utilidad no puede estar VACIO",
+                    "Error:", JOptionPane.ERROR_MESSAGE);
+            txtDescripcion.requestFocus();
+            return false;           
+        }
+        return true;
+    }
+    
+    //Agrega el Producto al LinkedList
+    private boolean addProductList(Producto p){              
+        try{
+            productList.addLast(p);            
+        }catch(Exception e){
+            return false;
+        }        
+        return true;
+    }
+    
+    //Agrega el LinkedList Producto al archivo Productos.txt
+    private boolean addListToFile(){
+        FileWriter file = null;
+        PrintWriter pw = null;
+        try{            
+            String archivo = "src/clase10/files/Productos.txt";
+            File f = new File(archivo);
+            if (f!=null){
+                file = new FileWriter(f, true);
+                pw = new PrintWriter(file);
+                for(Producto prod: productList){
+                    pw.write(prod.getCodigo()+";");
+                    pw.write(prod.getDescripcion()+";");
+                    pw.write(prod.getTipo()+";");
+                    pw.write(prod.getPrecioCompra()+";");
+                    pw.write(prod.getDescMaximo()+";");                
+                    //Cambie el write por el println porque 
+                    //el write no me toma el \n 
+                    pw.println(prod.getUtilidad()+";\n");
+                }            
+            }
+        }catch(Exception e){
+            return false;
+        }
+        finally{
+            try{
+                file.close();
+            }catch (Exception e){
+                return false;
+            }
+        }
+        return true;
+    }
 }
