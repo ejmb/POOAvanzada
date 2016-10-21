@@ -55,20 +55,30 @@ public class Agregar extends javax.swing.JFrame {
         bGuardar = new javax.swing.JButton();
         bCerrar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Agregar Productos");
+        setMinimumSize(new java.awt.Dimension(470, 300));
+        setPreferredSize(new java.awt.Dimension(470, 350));
         setResizable(false);
+        getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(179, 83, 9));
         jLabel1.setText("Agregar Producto");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(181, 11, 124, 17);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("Codigo");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(28, 71, 38, 14);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("Descripcion");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(28, 97, 65, 14);
 
         fTxtCodigo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
         fTxtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -76,32 +86,53 @@ public class Agregar extends javax.swing.JFrame {
                 fTxtCodigoKeyTyped(evt);
             }
         });
+        getContentPane().add(fTxtCodigo);
+        fTxtCodigo.setBounds(103, 68, 35, 20);
 
         txtDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtDescripcionKeyTyped(evt);
             }
         });
+        getContentPane().add(txtDescripcion);
+        txtDescripcion.setBounds(103, 94, 160, 20);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setText("Tipo");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(281, 97, 24, 14);
+
+        getContentPane().add(cbTipo);
+        cbTipo.setBounds(309, 94, 140, 20);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setText("Precio Compra");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(49, 167, 82, 14);
 
         fTxtPrecio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
         fTxtPrecio.setToolTipText("");
+        getContentPane().add(fTxtPrecio);
+        fTxtPrecio.setBounds(135, 164, 85, 20);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setText("Utilidad");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(49, 193, 43, 14);
 
         fTxtUtilidad.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.0"))));
         fTxtUtilidad.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        getContentPane().add(fTxtUtilidad);
+        fTxtUtilidad.setBounds(135, 190, 65, 20);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setText("Descuento MAX");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(318, 167, 88, 14);
 
         spDescuento.setModel(new javax.swing.SpinnerNumberModel(0, 0, 20, 1));
+        getContentPane().add(spDescuento);
+        spDescuento.setBounds(410, 164, 39, 20);
 
         bLimpiar.setBackground(new java.awt.Color(153, 153, 153));
         bLimpiar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -111,6 +142,8 @@ public class Agregar extends javax.swing.JFrame {
                 bLimpiarActionPerformed(evt);
             }
         });
+        getContentPane().add(bLimpiar);
+        bLimpiar.setBounds(115, 247, 75, 23);
 
         bGuardar.setBackground(new java.awt.Color(179, 83, 9));
         bGuardar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -121,6 +154,8 @@ public class Agregar extends javax.swing.JFrame {
                 bGuardarActionPerformed(evt);
             }
         });
+        getContentPane().add(bGuardar);
+        bGuardar.setBounds(208, 247, 79, 23);
 
         bCerrar.setBackground(new java.awt.Color(102, 102, 102));
         bCerrar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -130,90 +165,14 @@ public class Agregar extends javax.swing.JFrame {
                 bCerrarActionPerformed(evt);
             }
         });
+        getContentPane().add(bCerrar);
+        bCerrar.setBounds(305, 247, 69, 23);
+        getContentPane().add(jSeparator1);
+        jSeparator1.setBounds(28, 136, 421, 10);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel1)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel3)
-                                                .addComponent(jLabel2))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(fTxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(18, 18, 18)
-                                                    .addComponent(jLabel4)))))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jSeparator1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(87, 87, 87)
-                                .addComponent(bLimpiar)
-                                .addGap(18, 18, 18)
-                                .addComponent(bGuardar)
-                                .addGap(18, 18, 18)
-                                .addComponent(bCerrar))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fTxtUtilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fTxtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(spDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(21, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(fTxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(fTxtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(spDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(fTxtUtilidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bLimpiar)
-                    .addComponent(bGuardar)
-                    .addComponent(bCerrar))
-                .addGap(30, 30, 30))
-        );
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/clase10/images/backgroundImage.png"))); // NOI18N
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(0, 0, 470, 350);
 
         pack();
         setLocationRelativeTo(null);
@@ -324,6 +283,7 @@ public class Agregar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSpinner spDescuento;
     private javax.swing.JTextField txtDescripcion;
