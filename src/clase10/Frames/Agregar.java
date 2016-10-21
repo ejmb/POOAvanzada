@@ -57,9 +57,9 @@ public class Agregar extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel8 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Agregar Productos");
-        setMinimumSize(new java.awt.Dimension(470, 300));
+        setMinimumSize(new java.awt.Dimension(470, 350));
         setPreferredSize(new java.awt.Dimension(470, 350));
         setResizable(false);
         getContentPane().setLayout(null);
@@ -68,17 +68,17 @@ public class Agregar extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(179, 83, 9));
         jLabel1.setText("Agregar Producto");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(181, 11, 124, 17);
+        jLabel1.setBounds(160, 10, 124, 17);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("Codigo");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(28, 71, 38, 14);
+        jLabel2.setBounds(30, 70, 38, 14);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("Descripcion");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(28, 97, 65, 14);
+        jLabel3.setBounds(30, 100, 65, 14);
 
         fTxtCodigo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
         fTxtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -87,7 +87,7 @@ public class Agregar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(fTxtCodigo);
-        fTxtCodigo.setBounds(103, 68, 35, 20);
+        fTxtCodigo.setBounds(100, 60, 35, 25);
 
         txtDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -95,44 +95,44 @@ public class Agregar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtDescripcion);
-        txtDescripcion.setBounds(103, 94, 160, 20);
+        txtDescripcion.setBounds(100, 90, 160, 25);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setText("Tipo");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(281, 97, 24, 14);
+        jLabel4.setBounds(280, 100, 24, 14);
 
         getContentPane().add(cbTipo);
-        cbTipo.setBounds(309, 94, 140, 20);
+        cbTipo.setBounds(310, 90, 140, 25);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setText("Precio Compra");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(49, 167, 82, 14);
+        jLabel5.setBounds(30, 200, 82, 14);
 
         fTxtPrecio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
         fTxtPrecio.setToolTipText("");
         getContentPane().add(fTxtPrecio);
-        fTxtPrecio.setBounds(135, 164, 85, 20);
+        fTxtPrecio.setBounds(120, 190, 85, 25);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setText("Utilidad");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(49, 193, 43, 14);
+        jLabel6.setBounds(30, 230, 43, 14);
 
         fTxtUtilidad.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.0"))));
         fTxtUtilidad.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         getContentPane().add(fTxtUtilidad);
-        fTxtUtilidad.setBounds(135, 190, 65, 20);
+        fTxtUtilidad.setBounds(120, 220, 65, 25);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setText("Descuento MAX");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(318, 167, 88, 14);
+        jLabel7.setBounds(260, 200, 88, 14);
 
         spDescuento.setModel(new javax.swing.SpinnerNumberModel(0, 0, 20, 1));
         getContentPane().add(spDescuento);
-        spDescuento.setBounds(410, 164, 39, 20);
+        spDescuento.setBounds(360, 190, 50, 25);
 
         bLimpiar.setBackground(new java.awt.Color(153, 153, 153));
         bLimpiar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -143,7 +143,7 @@ public class Agregar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(bLimpiar);
-        bLimpiar.setBounds(115, 247, 75, 23);
+        bLimpiar.setBounds(100, 280, 75, 23);
 
         bGuardar.setBackground(new java.awt.Color(179, 83, 9));
         bGuardar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -155,7 +155,7 @@ public class Agregar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(bGuardar);
-        bGuardar.setBounds(208, 247, 79, 23);
+        bGuardar.setBounds(190, 280, 79, 23);
 
         bCerrar.setBackground(new java.awt.Color(102, 102, 102));
         bCerrar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -166,7 +166,7 @@ public class Agregar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(bCerrar);
-        bCerrar.setBounds(305, 247, 69, 23);
+        bCerrar.setBounds(290, 280, 69, 23);
         getContentPane().add(jSeparator1);
         jSeparator1.setBounds(28, 136, 421, 10);
 
