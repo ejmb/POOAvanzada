@@ -1,3 +1,8 @@
-1;Licuadora;Electrodomesticos;250000;20;35.6;
-
-2;Cinta;Gimnasio;1524000;10;45.6;
+1;Licuadora;Electrodomesticos;250000;20;35.6
+2;Cinta;Gimnasio;1524000;10;45.6
+3;test;Gimnasio;123123;20;34.34
+4;asdfa;Electrodomesticos;123123;20;12.45
+5;Test;Entretenimiento;123456;9;43.35
+7;hola;Electrodomesticos;12345;10;20.35
+8;hello;Electrodomesticos;12500;20;23.2
+8;bye;Gimnasio;12000;20;35.7

@@ -5,6 +5,8 @@
  */
 package clase10.Frames;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Eduardo
@@ -38,6 +40,7 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Principal");
+        setIconImage(new ImageIcon(Agregar.class.getResource("../images/frameIcon.png")).getImage());
         setMinimumSize(new java.awt.Dimension(400, 300));
         setResizable(false);
         getContentPane().setLayout(null);

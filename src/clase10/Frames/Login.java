@@ -6,7 +6,6 @@
 package clase10.Frames;
 
 import clase10.Clases.Usuario;
-import clase8.Cliente;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -23,6 +22,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -60,7 +60,9 @@ public class Login extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
         setBackground(new java.awt.Color(255, 255, 255));
-        setMinimumSize(new java.awt.Dimension(208, 150));
+        setIconImage(new ImageIcon(Agregar.class.getResource("../images/frameIcon.png")).getImage());
+        setMinimumSize(new java.awt.Dimension(208, 180));
+        setPreferredSize(new java.awt.Dimension(208, 150));
         setResizable(false);
         getContentPane().setLayout(null);
 
@@ -101,7 +103,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
         getContentPane().add(bConfirm);
-        bConfirm.setBounds(50, 90, 119, 25);
+        bConfirm.setBounds(50, 110, 121, 26);
 
         txtPassword.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         txtPassword.setForeground(new java.awt.Color(179, 83, 9));
@@ -117,7 +119,6 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bConfirmActionPerformed
-        int countLogin = 0; 
         String encodedPass = "";
         String usr = txtUser.getText();
         char[] passChar = txtPassword.getPassword();
@@ -132,7 +133,7 @@ public class Login extends javax.swing.JFrame {
                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             } 
             //Validar Intentos de Logueo
-            if(countLogin < 3){
+            if(countLogin < 2){
                 //Verificar si existe Usuario/Contraseña
                 if(verifyCredentials(usr, encodedPass)){
                     countLogin = 0;
@@ -141,10 +142,10 @@ public class Login extends javax.swing.JFrame {
                     p.setVisible(true);
                     this.dispose();                                            
                 }else{ 
-//                    JOptionPane.showMessageDialog(this, "Usuario y/o Contraseña incorrectos!\n"+
-//                        "Intentos Nº"+ countLogin,
-//                        "Credenciales incorrectas", JOptionPane.WARNING_MESSAGE);
                     countLogin++;
+                    JOptionPane.showMessageDialog(this, "Usuario y/o Contraseña incorrectos!\n"+
+                        "Intento Nº"+ countLogin,
+                        "Credenciales incorrectas", JOptionPane.WARNING_MESSAGE);                    
                     //Limpia el frame
                     cleanLogin();
                     //Añade usuario, IP y fecha al archivo Log.txt
@@ -205,6 +206,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
     private ArrayList<Usuario> users = new ArrayList();
+    private int countLogin = 0;
     
     //Se abre y lee el archivo Usuarios para guardar los Datos    
     private ArrayList loadUsers() {        
@@ -277,7 +279,7 @@ public class Login extends javax.swing.JFrame {
                 pw.write(getIP()+";");
                 //Cambie el write por el println porque 
                 //el write no me toma el \n
-                pw.println(getDate()+";\n");
+                pw.println(getDate());
             }
         } catch (Exception e){
             return false;

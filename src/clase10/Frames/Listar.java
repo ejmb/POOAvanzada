@@ -6,12 +6,11 @@
 package clase10.Frames;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Vector;
-import javax.swing.JFileChooser;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -47,6 +46,7 @@ public class Listar extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Listado Productos");
+        setIconImage(new ImageIcon(Agregar.class.getResource("../images/frameIcon.png")).getImage());
         setMinimumSize(new java.awt.Dimension(470, 300));
         setResizable(false);
         getContentPane().setLayout(null);
@@ -82,7 +82,7 @@ public class Listar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(bCerrar);
-        bCerrar.setBounds(200, 240, 69, 23);
+        bCerrar.setBounds(200, 240, 70, 24);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/clase10/images/backgroundImage.png"))); // NOI18N
         getContentPane().add(jLabel2);

@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -51,10 +52,13 @@ public class Consultar extends javax.swing.JFrame {
         txtDescMax = new javax.swing.JTextField();
         txtUtilidad = new javax.swing.JTextField();
         bCerrar = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Consulta Productos");
+        setIconImage(new ImageIcon(Agregar.class.getResource("../images/frameIcon.png")).getImage());
         setMinimumSize(new java.awt.Dimension(470, 300));
         setResizable(false);
         getContentPane().setLayout(null);
@@ -112,22 +116,37 @@ public class Consultar extends javax.swing.JFrame {
         jLabel8.setBounds(260, 196, 43, 25);
 
         txtDescripcion.setEditable(false);
+        txtDescripcion.setBackground(new java.awt.Color(204, 204, 204));
+        txtDescripcion.setFocusable(false);
+        txtDescripcion.setRequestFocusEnabled(false);
         getContentPane().add(txtDescripcion);
         txtDescripcion.setBounds(87, 141, 155, 25);
 
         txtTipo.setEditable(false);
+        txtTipo.setBackground(new java.awt.Color(204, 204, 204));
+        txtTipo.setFocusable(false);
+        txtTipo.setRequestFocusEnabled(false);
         getContentPane().add(txtTipo);
-        txtTipo.setBounds(87, 167, 90, 25);
+        txtTipo.setBounds(87, 167, 130, 25);
 
         txtPrecioCompra.setEditable(false);
+        txtPrecioCompra.setBackground(new java.awt.Color(204, 204, 204));
+        txtPrecioCompra.setFocusable(false);
+        txtPrecioCompra.setRequestFocusEnabled(false);
         getContentPane().add(txtPrecioCompra);
         txtPrecioCompra.setBounds(352, 141, 80, 25);
 
         txtDescMax.setEditable(false);
+        txtDescMax.setBackground(new java.awt.Color(204, 204, 204));
+        txtDescMax.setFocusable(false);
+        txtDescMax.setRequestFocusEnabled(false);
         getContentPane().add(txtDescMax);
         txtDescMax.setBounds(352, 167, 45, 25);
 
         txtUtilidad.setEditable(false);
+        txtUtilidad.setBackground(new java.awt.Color(204, 204, 204));
+        txtUtilidad.setFocusable(false);
+        txtUtilidad.setRequestFocusEnabled(false);
         getContentPane().add(txtUtilidad);
         txtUtilidad.setBounds(352, 193, 45, 25);
 
@@ -140,7 +159,17 @@ public class Consultar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(bCerrar);
-        bCerrar.setBounds(190, 230, 69, 23);
+        bCerrar.setBounds(190, 230, 70, 24);
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel10.setText("%");
+        getContentPane().add(jLabel10);
+        jLabel10.setBounds(400, 170, 20, 20);
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel11.setText("%");
+        getContentPane().add(jLabel11);
+        jLabel11.setBounds(400, 196, 20, 20);
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/clase10/images/backgroundImage.png"))); // NOI18N
         getContentPane().add(jLabel9);
@@ -198,6 +227,8 @@ public class Consultar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bCerrar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -218,22 +249,23 @@ public class Consultar extends javax.swing.JFrame {
     
     private void getProductoFromFile(){
         String aux = "";
-        Producto prod = new Producto();
+        
         try{
             String file = "src/clase10/files/Productos.txt";
             FileReader files = new FileReader(file);
             BufferedReader read = new BufferedReader(files);
             while((aux = read.readLine()) != null){
+                Producto prod = new Producto();
                 String[] field = aux.split(";");
-                if(field[0].equals("") == false){
+                //if(field[0].equals("") == false){
                     prod.setCodigo(Integer.parseInt(field[0]));
                     prod.setDescripcion(field[1]);
                     prod.setTipo(field[2]);
                     prod.setPrecioCompra(Integer.parseInt(field[3]));
                     prod.setDescMaximo(Integer.parseInt(field[4]));
                     prod.setUtilidad(Float.parseFloat(field[5]));
-                    productList.addLast(prod);
-                }                
+                    productList.add(prod);
+                //}                
             }                
             read.close();
         }catch(IOException ex){
@@ -245,6 +277,7 @@ public class Consultar extends javax.swing.JFrame {
     
     private void getProductoFromList(int codigo){
         getProductoFromFile();
+        boolean lol = false;
         for(Producto prod: productList){
             if(prod.getCodigo() == codigo){
                 txtDescripcion.setText(prod.getDescripcion());
@@ -252,11 +285,13 @@ public class Consultar extends javax.swing.JFrame {
                 txtPrecioCompra.setText(Integer.toString(prod.getPrecioCompra()));
                 txtDescMax.setText(Integer.toString(prod.getDescMaximo()));
                 txtUtilidad.setText(Float.toString(prod.getUtilidad()));
-            }else{
-                JOptionPane.showMessageDialog(this, "Codigo de Producto "+codigo+
+                lol = true;
+            }             
+        }
+        if(!lol){
+            JOptionPane.showMessageDialog(this, "Codigo de Producto "+codigo+
                         "\nNO EXISTE", 
                         "Codigo Invalido", JOptionPane.WARNING_MESSAGE);
-            }
         }
     }
 }

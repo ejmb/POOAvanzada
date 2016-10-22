@@ -39,6 +39,7 @@ public class AcercaDe extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Acerca de");
+        setIconImage(new ImageIcon(Agregar.class.getResource("../images/frameIcon.png")).getImage());
         setMinimumSize(new java.awt.Dimension(430, 214));
         getContentPane().setLayout(null);
 
@@ -57,7 +58,7 @@ public class AcercaDe extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextArea1);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(99, 39, 290, 113);
+        jScrollPane1.setBounds(99, 39, 290, 98);
 
         bCerrar.setBackground(new java.awt.Color(102, 102, 102));
         bCerrar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -69,7 +70,7 @@ public class AcercaDe extends javax.swing.JFrame {
             }
         });
         getContentPane().add(bCerrar);
-        bCerrar.setBounds(180, 150, 69, 23);
+        bCerrar.setBounds(180, 150, 70, 24);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/clase10/images/aboutImage.png"))); // NOI18N
         getContentPane().add(jLabel2);

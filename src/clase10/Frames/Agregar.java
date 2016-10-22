@@ -13,6 +13,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.LinkedList;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -27,6 +28,7 @@ public class Agregar extends javax.swing.JFrame {
     public Agregar() {
         initComponents();
         loadProductTypes();
+        //this.setIconImage(new ImageIcon(Agregar.class.getResource("../images/addIcon.png")).getImage());
     }
 
     /**
@@ -55,10 +57,13 @@ public class Agregar extends javax.swing.JFrame {
         bGuardar = new javax.swing.JButton();
         bCerrar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Agregar Productos");
+        setIconImage(new ImageIcon(Agregar.class.getResource("../images/frameIcon.png")).getImage());
         setMinimumSize(new java.awt.Dimension(470, 350));
         setPreferredSize(new java.awt.Dimension(470, 350));
         setResizable(false);
@@ -143,7 +148,7 @@ public class Agregar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(bLimpiar);
-        bLimpiar.setBounds(100, 280, 75, 23);
+        bLimpiar.setBounds(100, 280, 76, 24);
 
         bGuardar.setBackground(new java.awt.Color(179, 83, 9));
         bGuardar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -155,7 +160,7 @@ public class Agregar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(bGuardar);
-        bGuardar.setBounds(190, 280, 79, 23);
+        bGuardar.setBounds(190, 280, 80, 24);
 
         bCerrar.setBackground(new java.awt.Color(102, 102, 102));
         bCerrar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -166,11 +171,23 @@ public class Agregar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(bCerrar);
-        bCerrar.setBounds(290, 280, 69, 23);
+        bCerrar.setBounds(290, 280, 70, 24);
         getContentPane().add(jSeparator1);
         jSeparator1.setBounds(28, 136, 421, 10);
 
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel9.setText("[20% ~ 50%]");
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(190, 220, 80, 20);
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel10.setText("%");
+        getContentPane().add(jLabel10);
+        jLabel10.setBounds(420, 190, 20, 20);
+
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/clase10/images/backgroundImage.png"))); // NOI18N
+        jLabel8.setText("asdf");
         getContentPane().add(jLabel8);
         jLabel8.setBounds(0, 0, 470, 350);
 
@@ -213,12 +230,15 @@ public class Agregar extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(validateFields()){
             Producto p = new Producto();
-            p.setCodigo(((Long)fTxtCodigo.getValue()).intValue());
+            Number codigo = (Number)fTxtCodigo.getValue();
+            Number utilidad = (Number)fTxtUtilidad.getValue();
+            Number precio = (Number)fTxtPrecio.getValue();
+            p.setCodigo(codigo.intValue());
             p.setDescripcion(txtDescripcion.getText());
             p.setTipo(cbTipo.getSelectedItem().toString());
-            p.setPrecioCompra(((Long)fTxtPrecio.getValue()).intValue());
-            p.setDescMaximo((Integer)spDescuento.getValue());
-            p.setUtilidad(((Double)fTxtUtilidad.getValue()).floatValue());
+            p.setPrecioCompra(precio.intValue());
+            p.setDescMaximo((Integer)spDescuento.getValue());            
+            p.setUtilidad(utilidad.floatValue());
             if(addProductList(p)){
                 JOptionPane.showMessageDialog(this, p.toString(), "Datos Guardados",
                         JOptionPane.INFORMATION_MESSAGE);
@@ -227,9 +247,6 @@ public class Agregar extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Error al Guardar", 
                         "Datos No Guardados", JOptionPane.ERROR_MESSAGE);
             }                        
-        }else{
-            JOptionPane.showMessageDialog(this, "FALSE",
-                    "Error:", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_bGuardarActionPerformed
 
@@ -277,6 +294,7 @@ public class Agregar extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField fTxtPrecio;
     private javax.swing.JFormattedTextField fTxtUtilidad;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -284,6 +302,7 @@ public class Agregar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSpinner spDescuento;
     private javax.swing.JTextField txtDescripcion;
@@ -321,6 +340,7 @@ public class Agregar extends javax.swing.JFrame {
    
     //Valida los Campos
     private boolean validateFields() {
+        
         //Validar Codigo vacio
         if(fTxtCodigo.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Campo Codigo no puede estar VACIO",
@@ -339,14 +359,22 @@ public class Agregar extends javax.swing.JFrame {
         if(fTxtPrecio.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Campo Precio no puede estar VACIO",
                     "Error:", JOptionPane.ERROR_MESSAGE);
-            txtDescripcion.requestFocus();
+            fTxtPrecio.requestFocus();
             return false;           
         }
         //Validar Utilidad vacia
         if(fTxtUtilidad.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Campo Utilidad no puede estar VACIO",
                     "Error:", JOptionPane.ERROR_MESSAGE);
-            txtDescripcion.requestFocus();
+            fTxtUtilidad.requestFocus();
+            return false;           
+        }
+        //Validar Rango Utilidad
+        Number value = (Number)fTxtUtilidad.getValue();
+        if(value.floatValue()<20 || value.floatValue()>50){
+            JOptionPane.showMessageDialog(this, "Campo Utilidad fuera de Rango\n [20% ~ 50%]",
+                    "Error:", JOptionPane.ERROR_MESSAGE);
+            fTxtUtilidad.requestFocus();
             return false;           
         }
         return true;
@@ -380,7 +408,7 @@ public class Agregar extends javax.swing.JFrame {
                     pw.write(prod.getDescMaximo()+";");                
                     //Cambie el write por el println porque 
                     //el write no me toma el \n 
-                    pw.println(prod.getUtilidad()+";\n");
+                    pw.println(prod.getUtilidad());
                 }            
             }
         }catch(Exception e){
