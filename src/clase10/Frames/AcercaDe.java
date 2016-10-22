@@ -70,7 +70,7 @@ public class AcercaDe extends javax.swing.JFrame {
             }
         });
         getContentPane().add(bCerrar);
-        bCerrar.setBounds(180, 150, 70, 24);
+        bCerrar.setBounds(180, 140, 70, 24);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/clase10/images/aboutImage.png"))); // NOI18N
         getContentPane().add(jLabel2);

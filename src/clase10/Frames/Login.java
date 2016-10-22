@@ -154,6 +154,7 @@ public class Login extends javax.swing.JFrame {
             }else{ 
                 JOptionPane.showMessageDialog(this, "Limite de Intentos permitidos",
                     "Login", JOptionPane.ERROR_MESSAGE);
+                addUserLog(usr);
                 System.exit(0); 
             }
         }
