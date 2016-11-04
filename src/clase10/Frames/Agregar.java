@@ -148,7 +148,7 @@ public class Agregar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(bLimpiar);
-        bLimpiar.setBounds(100, 280, 76, 24);
+        bLimpiar.setBounds(100, 280, 75, 23);
 
         bGuardar.setBackground(new java.awt.Color(179, 83, 9));
         bGuardar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -160,7 +160,7 @@ public class Agregar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(bGuardar);
-        bGuardar.setBounds(190, 280, 80, 24);
+        bGuardar.setBounds(190, 280, 79, 23);
 
         bCerrar.setBackground(new java.awt.Color(102, 102, 102));
         bCerrar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -171,7 +171,7 @@ public class Agregar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(bCerrar);
-        bCerrar.setBounds(290, 280, 70, 24);
+        bCerrar.setBounds(290, 280, 69, 23);
         getContentPane().add(jSeparator1);
         jSeparator1.setBounds(28, 136, 421, 10);
 
