@@ -10,7 +10,6 @@ oject Properties.
 package clase13.Frames;
 
 import clase8.Cliente;
-import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -64,7 +63,7 @@ public class AppClientes extends javax.swing.JFrame {
         setTitle("Manejo de Archivos de Acceso Aleatorio - Registro de Clientes");
         setResizable(false);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED), "Datos del Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 51, 204)));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED), "Datos del Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 51, 204))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("Codigo");
@@ -113,11 +112,6 @@ public class AppClientes extends javax.swing.JFrame {
 
         fTxtDesc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.0"))));
         fTxtDesc.setEnabled(false);
-        fTxtDesc.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                fTxtDescKeyTyped(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -167,7 +161,7 @@ public class AppClientes extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED), "Operaciones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 51, 204)));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED), "Operaciones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 51, 204))); // NOI18N
 
         bNuevo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         bNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/clase13/Images/newIcon.png"))); // NOI18N
@@ -334,12 +328,6 @@ public class AppClientes extends javax.swing.JFrame {
             evt.consume(); 
         }
     }//GEN-LAST:event_txtNombreKeyTyped
-
-    private void fTxtDescKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fTxtDescKeyTyped
-        if (!Character.isDigit(evt.getKeyChar())){
-            evt.consume();
-	}        
-    }//GEN-LAST:event_fTxtDescKeyTyped
 
     private void txtDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyTyped
         if (txtNombre.getText().length() >= 50 ){
