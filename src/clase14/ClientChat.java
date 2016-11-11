@@ -76,6 +76,7 @@ public class ClientChat {
         try {
             socket = new Socket(serverAddress, 9001);
         } catch (IOException ex) {
+            JOptionPane.showMessageDialog(frame,"No se pudo conectar al Servidor\n"+ex,"ERROR", JOptionPane.ERROR_MESSAGE);
             throw ex;
         }
         in = new BufferedReader(new InputStreamReader(
@@ -85,9 +86,14 @@ public class ClientChat {
         while (true) {
             String line = in.readLine();
             if (line.startsWith("SUBMIT_NAME")) {
+                //Tema NAME en el Title
                 out.println(getName());
+            }else if(line.startsWith("NAME_INUSE")){
+                JOptionPane.showMessageDialog(frame,"Nick Name esta EN USO","ATENCION", JOptionPane.INFORMATION_MESSAGE);
             } else if (line.startsWith("NAME_ACCEPTED")) {
+                frame.setTitle("Mi chat - NickName: ");
                 textField.setEditable(true);
+                textField.requestFocus();
             } else if (line.startsWith("MESSAGE")) {
                 messageArea.append(line.substring(8) + "\n");
             } 
@@ -137,7 +143,6 @@ public class ClientChat {
         }else if(name.equals("")){
             JOptionPane.showMessageDialog(frame,"Nick Name NO puede estar VACIO!","ERROR", JOptionPane.ERROR_MESSAGE);
             System.exit(0);
-            //name = getName();
         }
         return name;
     }

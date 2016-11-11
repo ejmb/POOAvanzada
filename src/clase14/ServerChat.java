@@ -134,6 +134,8 @@ public class ServerChat {
                         if (!names.contains(name)) {
                             names.add(name);
                             break;
+                        }else{
+                            out.println("NAME_INUSE");
                         }
                     }
                 }
@@ -143,6 +145,7 @@ public class ServerChat {
                 // this client can receive broadcast messages.
                 out.println("NAME_ACCEPTED" + name);
                 writers.add(out);
+                System.out.println("Nick Name Aceptado: "+ name);
                 
                 // Accept messages from this client and broadcast them.
                 // Ignore other clients that cannot be broadcasted to.
