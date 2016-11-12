@@ -133,9 +133,10 @@ public class ServerChat {
                     synchronized (names) {
                         if (!names.contains(name)) {
                             names.add(name);
+                            out.println("SERVER"+": "+name+" se ha conectado.");
                             break;
                         }else{
-                            out.println("NAME_INUSE");
+                            out.println("NAME_IN_USE");
                         }
                     }
                 }
@@ -144,7 +145,7 @@ public class ServerChat {
                 // socket's print writer to the set of all writers so
                 // this client can receive broadcast messages.
                 out.println("NAME_ACCEPTED" + name);
-                writers.add(out);
+                writers.add(out);                
                 System.out.println("Nick Name Aceptado: "+ name);
                 
                 // Accept messages from this client and broadcast them.
@@ -165,6 +166,7 @@ public class ServerChat {
                 // writer from the sets, and close its socket.
                 if (name != null) {
                     names.remove(name);
+                    out.println("SERVER"+": "+name+" se ha desconectado.");
                 }
                 if (out != null) {
                     writers.remove(out);

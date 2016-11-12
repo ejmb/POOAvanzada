@@ -88,15 +88,17 @@ public class ClientChat {
             if (line.startsWith("SUBMIT_NAME")) {
                 //Tema NAME en el Title
                 out.println(getName());
-            }else if(line.startsWith("NAME_INUSE")){
+            }else if(line.startsWith("NAME_IN_USE")){
                 JOptionPane.showMessageDialog(frame,"Nick Name esta EN USO","ATENCION", JOptionPane.INFORMATION_MESSAGE);
             } else if (line.startsWith("NAME_ACCEPTED")) {
-                frame.setTitle("Mi chat - NickName: ");
+                frame.setTitle("Mi Chat - NickName: ");
                 textField.setEditable(true);
                 textField.requestFocus();
             } else if (line.startsWith("MESSAGE")) {
                 messageArea.append(line.substring(8) + "\n");
-            } 
+            } else if (line.startsWith("SERVER")) {
+                messageArea.append(line.substring(7) + "\n");
+            }
         }
     }
 
@@ -155,11 +157,18 @@ public class ClientChat {
              * the text area in preparation for the next message.
              */
             public void actionPerformed(ActionEvent e) {
-                out.println(textField.getText());
+                if(!textField.getText().equals("")){
+                    out.println(textField.getText());
+                    textField.setText("");
+                }else{
+                    JOptionPane.showMessageDialog(frame,"Mensaje NO puede estar VACIO!","ERROR", JOptionPane.ERROR_MESSAGE);
+                    textField.requestFocus();
+                }                
             }
         });
         bCerrar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                
                 System.exit(0);
             }     
         });
