@@ -41,6 +41,7 @@ public class ClientChat {
     JTextField textField = new JTextField(40);
     JTextArea messageArea = new JTextArea(8, 40);
     JButton bCerrar = new JButton("Cerrar");
+    String name;
     /**
      * Constructs the client by laying out the GUI and registering a
      * listener with the textfield so that pressing Return in the
@@ -84,14 +85,14 @@ public class ClientChat {
         out = new PrintWriter(socket.getOutputStream(), true);
         // Process all messages from server, according to the protocol.
         while (true) {
-            String line = in.readLine();
+            String line = in.readLine();            
             if (line.startsWith("SUBMIT_NAME")) {
-                //Tema NAME en el Title
-                out.println(getName());
+                name = getName();
+                out.println(name);
             }else if(line.startsWith("NAME_IN_USE")){
                 JOptionPane.showMessageDialog(frame,"Nick Name esta EN USO","ATENCION", JOptionPane.INFORMATION_MESSAGE);
-            } else if (line.startsWith("NAME_ACCEPTED")) {
-                frame.setTitle("Mi Chat - NickName: ");
+            }else if (line.startsWith("NAME_ACCEPTED")) {
+                frame.setTitle("Mi Chat - NickName: "+name);
                 textField.setEditable(true);
                 textField.requestFocus();
             } else if (line.startsWith("MESSAGE")) {
@@ -167,8 +168,7 @@ public class ClientChat {
             }
         });
         bCerrar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                
+            public void actionPerformed(ActionEvent e) {                
                 System.exit(0);
             }     
         });
