@@ -140,7 +140,8 @@ public class Clientes implements Serializable {
 
     @Override
     public String toString() {
-        return "clase17.Clientes[ codigo=" + codigo + " ]";
+        return "[" + codigo + " " + nombre + " RUC: " + ruc + " Dir.: " + direccion + 
+                " %Dscto: " + descuento + "]";
     }
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {

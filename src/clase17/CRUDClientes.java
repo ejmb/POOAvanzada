@@ -7,15 +7,12 @@ package clase17;
 
 import java.awt.EventQueue;
 import java.beans.Beans;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.RollbackException;
-import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.text.MaskFormatter;
 
 /**
  *
@@ -54,7 +51,6 @@ public class CRUDClientes extends JPanel {
         descuentoLabel = new javax.swing.JLabel();
         codigoField = new javax.swing.JTextField();
         nombreField = new javax.swing.JTextField();
-        rucField = new javax.swing.JTextField();
         direccionField = new javax.swing.JTextField();
         descuentoField = new javax.swing.JTextField();
         saveButton = new javax.swing.JButton();
@@ -62,6 +58,7 @@ public class CRUDClientes extends JPanel {
         newButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
+        rucFField = new javax.swing.JFormattedTextField();
 
         FormListener formListener = new FormListener();
 
@@ -111,14 +108,6 @@ public class CRUDClientes extends JPanel {
 
         nombreField.addKeyListener(formListener);
 
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.ruc}"), rucField, org.jdesktop.beansbinding.BeanProperty.create("text"));
-        binding.setSourceUnreadableValue("null");
-        bindingGroup.addBinding(binding);
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement != null}"), rucField, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
-        bindingGroup.addBinding(binding);
-
-        rucField.addKeyListener(formListener);
-
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.direccion}"), direccionField, org.jdesktop.beansbinding.BeanProperty.create("text"));
         binding.setSourceUnreadableValue("null");
         bindingGroup.addBinding(binding);
@@ -164,6 +153,26 @@ public class CRUDClientes extends JPanel {
         exitButton.setText("Salir");
         exitButton.addActionListener(formListener);
 
+        rucFField.setFormatterFactory(new javax.swing.JFormattedTextField.AbstractFormatterFactory() {
+            public javax.swing.JFormattedTextField.AbstractFormatter
+            getFormatter(javax.swing.JFormattedTextField tf){
+                try{
+                    return new javax.swing.text.MaskFormatter("#-#");
+                } catch(java.text.ParseException pe){
+                    pe.printStackTrace();
+                }
+                return null;
+            }
+        });
+        rucFField.setText("null");
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.ruc}"), rucFField, org.jdesktop.beansbinding.BeanProperty.create("value"));
+        bindingGroup.addBinding(binding);
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement != null}"), rucFField, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
+        bindingGroup.addBinding(binding);
+
+        rucFField.addMouseListener(formListener);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -184,7 +193,7 @@ public class CRUDClientes extends JPanel {
                             .addComponent(nombreField, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
                             .addComponent(direccionField, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
                             .addComponent(descuentoField, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
-                            .addComponent(rucField, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)))
+                            .addComponent(rucFField)))
                     .addComponent(masterScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -218,7 +227,7 @@ public class CRUDClientes extends JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rucLabel)
-                    .addComponent(rucField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(rucFField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(direccionLabel)
@@ -242,7 +251,7 @@ public class CRUDClientes extends JPanel {
 
     // Code for dispatching events from components to event handlers.
 
-    private class FormListener implements java.awt.event.ActionListener, java.awt.event.KeyListener {
+    private class FormListener implements java.awt.event.ActionListener, java.awt.event.KeyListener, java.awt.event.MouseListener {
         FormListener() {}
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             if (evt.getSource() == saveButton) {
@@ -266,6 +275,9 @@ public class CRUDClientes extends JPanel {
         }
 
         public void keyReleased(java.awt.event.KeyEvent evt) {
+            if (evt.getSource() == descuentoField) {
+                CRUDClientes.this.descuentoFieldKeyReleased(evt);
+            }
         }
 
         public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -278,9 +290,24 @@ public class CRUDClientes extends JPanel {
             else if (evt.getSource() == descuentoField) {
                 CRUDClientes.this.descuentoFieldKeyTyped(evt);
             }
-            else if (evt.getSource() == rucField) {
-                CRUDClientes.this.rucFieldKeyTyped(evt);
+        }
+
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            if (evt.getSource() == rucFField) {
+                CRUDClientes.this.rucFFieldMouseClicked(evt);
             }
+        }
+
+        public void mouseEntered(java.awt.event.MouseEvent evt) {
+        }
+
+        public void mouseExited(java.awt.event.MouseEvent evt) {
+        }
+
+        public void mousePressed(java.awt.event.MouseEvent evt) {
+        }
+
+        public void mouseReleased(java.awt.event.MouseEvent evt) {
         }
     }// </editor-fold>//GEN-END:initComponents
 
@@ -364,12 +391,29 @@ public class CRUDClientes extends JPanel {
 	}
     }//GEN-LAST:event_descuentoFieldKeyTyped
 
-    private void rucFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rucFieldKeyTyped
+    private void rucFFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rucFFieldMouseClicked
         // TODO add your handling code here:
-        if (rucField.getText().length() >= 10 ){
+        if (rucFField.getText().length() >= 10 ){
             evt.consume();
         }
-    }//GEN-LAST:event_rucFieldKeyTyped
+    }//GEN-LAST:event_rucFFieldMouseClicked
+
+    private void descuentoFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_descuentoFieldKeyReleased
+        // TODO add your handling code here:
+        String desc = descuentoField.getText();
+        try{
+            float valDesc = Float.parseFloat(desc);
+            if(valDesc > 30){
+                JOptionPane.showMessageDialog(this, "Descuento no puede superar 30%",
+                    "Atencion:", JOptionPane.WARNING_MESSAGE);
+                descuentoField.setText("30.0"); 
+                descuentoField.requestFocus();
+                descuentoField.selectAll();
+            }
+        }
+        catch(Exception e){            
+        }
+    }//GEN-LAST:event_descuentoFieldKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -390,11 +434,12 @@ public class CRUDClientes extends JPanel {
     private javax.swing.JLabel nombreLabel;
     private javax.persistence.Query query;
     private javax.swing.JButton refreshButton;
-    private javax.swing.JTextField rucField;
+    private javax.swing.JFormattedTextField rucFField;
     private javax.swing.JLabel rucLabel;
     private javax.swing.JButton saveButton;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
+    
     public static void main(String[] args) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
