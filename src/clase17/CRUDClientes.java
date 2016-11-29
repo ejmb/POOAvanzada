@@ -7,12 +7,15 @@ package clase17;
 
 import java.awt.EventQueue;
 import java.beans.Beans;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.RollbackException;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.text.MaskFormatter;
 
 /**
  *
@@ -22,8 +25,6 @@ public class CRUDClientes extends JPanel {
     
     public CRUDClientes() {
         initComponents();
-//        MaskFormatter formatter = new MaskFormatter("########-#");  
-//        formatter.install(rucField); 
         if (!Beans.isDesignTime()) {
             entityManager.getTransaction().begin();
         }
@@ -157,7 +158,7 @@ public class CRUDClientes extends JPanel {
             public javax.swing.JFormattedTextField.AbstractFormatter
             getFormatter(javax.swing.JFormattedTextField tf){
                 try{
-                    return new javax.swing.text.MaskFormatter("#-#");
+                    return new javax.swing.text.MaskFormatter("########-#");
                 } catch(java.text.ParseException pe){
                     pe.printStackTrace();
                 }
